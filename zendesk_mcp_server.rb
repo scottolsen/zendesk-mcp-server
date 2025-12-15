@@ -13,7 +13,7 @@ class ZendeskMCPServer
 
     @zendesk_domain = ENV['ZENDESK_DOMAIN']
     @zendesk_email = ENV['ZENDESK_EMAIL']
-    @zendesk_token = ENV['ZENDESK_TOKEN']
+    @zendesk_token = ENV['ZENDESK_API_TOKEN']
 
     validate_configuration!
   end
