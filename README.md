@@ -27,7 +27,7 @@ Add the following environment variables to your shell configuration file (e.g., 
 ```bash
 export ZENDESK_DOMAIN="your-subdomain.zendesk.com"
 export ZENDESK_EMAIL="your-email@example.com"
-export ZENDESK_TOKEN="your-zendesk-api-token"
+export ZENDESK_API_TOKEN="your-zendesk-api-token"
 ```
 
 To generate a Zendesk API token:
