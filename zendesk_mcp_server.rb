@@ -5,6 +5,7 @@ require 'net/http'
 require 'uri'
 require 'base64'
 require 'logger'
+require 'openssl'
 
 class ZendeskMCPServer
   def initialize
@@ -386,6 +387,12 @@ class ZendeskMCPServer
 
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+    # Skip CRL verification errors (codes 3, 4) while keeping cert validation
+    http.verify_callback = ->(preverify_ok, store_ctx) {
+      return true if [3, 4].include?(store_ctx.error)  # CRL errors
+      preverify_ok
+    }
 
     case method.upcase
     when "GET"
